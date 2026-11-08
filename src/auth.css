@@ -1,0 +1,670 @@
+
+/* ==========================================
+   CEMPRON DENTAL CLINIC
+   COMPLETE AUTHENTICATION STYLES
+   Login, Register, Patient Profile, Logout
+   ========================================== */
+
+/* ==========================================
+   AUTHENTICATION SCREEN
+   ========================================== */
+
+.auth-screen {
+  min-height: 100vh;
+  background: #f3f9fb;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  color: #17394a;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.auth-layout {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ==========================================
+   LEFT SIDE - LOGIN INTRODUCTION
+   ========================================== */
+
+.auth-intro {
+  background: linear-gradient(145deg, #087e9a, #0cacc2);
+  color: #ffffff;
+  padding: 45px 65px;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.auth-brand-icon {
+  width: 53px;
+  height: 53px;
+  background: #ffffff24;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  font-size: 28px;
+}
+
+.auth-brand strong {
+  display: block;
+  font-size: 23px;
+  letter-spacing: 2px;
+}
+
+.auth-brand span {
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.auth-intro-content {
+  margin: auto 0;
+  max-width: 530px;
+  padding: 60px 0;
+}
+
+.auth-eyebrow {
+  display: inline-block;
+  background: #ffffff25;
+  border-radius: 30px;
+  padding: 9px 15px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.auth-intro-content h1 {
+  font-size: clamp(35px, 4vw, 57px);
+  line-height: 1.15;
+  letter-spacing: -1.6px;
+  margin: 24px 0 18px;
+}
+
+.auth-intro-content > p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #def7fc;
+  margin-bottom: 35px;
+}
+
+.auth-feature {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 15px 0;
+}
+
+.auth-feature > span {
+  background: #ffffff23;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  font-size: 23px;
+  flex-shrink: 0;
+}
+
+.auth-feature strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.auth-feature small {
+  display: block;
+  color: #dbf4f8;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.auth-intro-footer {
+  font-size: 11px;
+  color: #c0eaf1;
+}
+
+/* ==========================================
+   RIGHT SIDE - AUTHENTICATION FORM
+   ========================================== */
+
+.auth-form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35px;
+  overflow-y: auto;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border: 1px solid #e5eef2;
+  border-radius: 22px;
+  padding: 38px;
+  box-shadow: 0 15px 45px #0f51600b;
+}
+
+.auth-logo {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  background: #e1f7fa;
+  font-size: 32px;
+  margin-bottom: 23px;
+}
+
+.auth-form-eyebrow {
+  color: #0791a8;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.auth-card h2 {
+  font-size: 29px;
+  margin: 11px 0;
+  letter-spacing: -0.7px;
+}
+
+.auth-subtitle {
+  color: #8297a4;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0 0 25px;
+}
+
+/* ==========================================
+   LOGIN / REGISTER TABS
+   ========================================== */
+
+.auth-tabs {
+  display: flex;
+  background: #eef5f7;
+  padding: 5px;
+  border-radius: 11px;
+  margin-bottom: 25px;
+}
+
+.auth-tabs button {
+  flex: 1;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  background: transparent;
+  color: #8195a1;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.auth-tabs button.selected {
+  background: #ffffff;
+  color: #078ca5;
+  box-shadow: 0 2px 7px #17394a14;
+}
+
+/* ==========================================
+   LOGIN AND REGISTRATION INPUTS
+   ========================================== */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.auth-form input {
+  width: 100%;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #dce8ed;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #17394a;
+  font-size: 13px;
+  outline: none;
+}
+
+.auth-form input:focus {
+  border-color: #0793aa;
+  box-shadow: 0 0 0 3px #0793aa15;
+}
+
+.auth-form input::placeholder {
+  color: #a2b0bb;
+}
+
+/* ==========================================
+   PASSWORD VISIBILITY TOGGLE
+   ========================================== */
+
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 65px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #078ca5;
+  font-weight: 700;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* ==========================================
+   AUTHENTICATION BUTTON
+   ========================================== */
+
+.auth-submit {
+  background: #078ba4;
+  color: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 800;
+  font-size: 13px;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.auth-submit:hover {
+  background: #066c82;
+}
+
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   SWITCH LOGIN / REGISTER
+   ========================================== */
+
+.auth-switch {
+  text-align: center;
+  margin: 23px 0;
+  font-size: 12px;
+  color: #8498a5;
+}
+
+.auth-switch button {
+  border: none;
+  color: #078ba4;
+  background: transparent;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.auth-switch button:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================
+   PRIVACY MESSAGE
+   ========================================== */
+
+.auth-privacy {
+  background: #f2f8fa;
+  color: #7a909d;
+  padding: 14px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   SUCCESS AND ERROR MESSAGES
+   ========================================== */
+
+.auth-alert {
+  border-radius: 9px;
+  padding: 13px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.auth-alert.error {
+  color: #b34848;
+  background: #fff0f0;
+  border: 1px solid #f4cbcb;
+}
+
+.auth-alert.success {
+  color: #167857;
+  background: #ecfaf3;
+  border: 1px solid #bee9d5;
+}
+
+/* ==========================================
+   LOADING SCREEN
+   ========================================== */
+
+.auth-loading {
+  margin: auto;
+  text-align: center;
+}
+
+.auth-loading .auth-logo {
+  margin: 0 auto 15px;
+}
+
+.auth-loading p {
+  color: #8196a4;
+}
+
+/* ==========================================
+   SIDEBAR PROFILE AND LOGOUT
+   ========================================== */
+
+/* Hide the previous sidebar help card */
+
+.sidebar-help {
+  display: none !important;
+}
+
+.sidebar-bottom > small {
+  display: none !important;
+}
+
+/* Reserve room for the patient account */
+
+.sidebar {
+  padding-bottom: 190px;
+}
+
+/* Patient account container */
+
+.patient-account-bar {
+  position: fixed;
+  left: 18px;
+  right: auto;
+  bottom: 35px;
+
+  width: 224px;
+  max-width: 224px;
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+
+  padding: 14px;
+
+  background: #ffffff;
+  border: 1px solid #e5edf2;
+  border-radius: 14px;
+  box-shadow: none;
+}
+
+/* ==========================================
+   PATIENT INFORMATION
+   ========================================== */
+
+.patient-account-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+}
+
+.patient-account-info > div {
+  min-width: 0;
+}
+
+.patient-avatar {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+
+  border-radius: 50%;
+  background: #e1f7fa;
+  color: #078ba5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.patient-account-info strong {
+  display: block;
+  max-width: 145px;
+
+  font-size: 12px;
+  font-weight: 700;
+  color: #17394a;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.patient-account-info small {
+  display: block;
+  margin-top: 4px;
+
+  color: #92a3ae;
+  font-size: 10px;
+}
+
+/* ==========================================
+   LOGOUT BUTTON
+   ========================================== */
+
+.patient-logout-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  background: #fff0f0;
+  color: #c44747;
+
+  border: none;
+  border-radius: 9px;
+  padding: 13px;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.patient-logout-button:hover {
+  background: #ffe1e1;
+}
+
+.patient-logout-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Error notification for logout */
+
+.logout-error {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+
+  background: #fff0f0;
+  color: #b34848;
+
+  border: 1px solid #f4cbcb;
+  border-radius: 9px;
+
+  padding: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+
+  width: 100%;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN - TABLETS
+   ========================================== */
+
+@media (max-width: 900px) {
+  .auth-intro {
+    padding: 30px;
+  }
+
+  .auth-card {
+    padding: 28px;
+  }
+}
+
+/* Narrow dashboard sidebar */
+
+@media (min-width: 601px) and (max-width: 850px) {
+  .patient-account-bar {
+    left: auto;
+    right: 15px;
+    bottom: 15px;
+    width: 224px;
+    max-width: 224px;
+
+    box-shadow: 0 8px 30px #174a5d22;
+  }
+
+  .sidebar {
+    padding-bottom: 24px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN - MOBILE LOGIN
+   ========================================== */
+
+@media (max-width: 700px) {
+  .auth-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-intro {
+    padding: 25px;
+  }
+
+  .auth-intro-content,
+  .auth-intro-footer {
+    display: none;
+  }
+
+  .auth-form-side {
+    padding: 22px;
+  }
+
+  .auth-card {
+    max-width: 460px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN - MOBILE DASHBOARD
+   ========================================== */
+
+@media (max-width: 600px) {
+  .patient-account-bar {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+
+    width: auto;
+    max-width: none;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+    box-shadow: 0 8px 30px #174a5d22;
+  }
+
+  .patient-account-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .patient-account-info strong {
+    max-width: 130px;
+  }
+
+  .patient-logout-button {
+    width: auto;
+    padding: 12px;
+    white-space: nowrap;
+  }
+
+  .sidebar {
+    padding-bottom: 12px;
+  }
+}
+
+/* ==========================================
+   VERY SMALL MOBILE SCREENS
+   ========================================== */
+
+@media (max-width: 430px) {
+  .auth-form-side {
+    padding: 12px;
+  }
+
+  .auth-card {
+    padding: 24px 18px;
+  }
+
+  .auth-card h2 {
+    font-size: 25px;
+  }
+
+  .patient-account-bar {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    padding: 10px;
+  }
+
+  .patient-account-info strong {
+    max-width: 90px;
+  }
+
+  .patient-logout-button {
+    padding: 10px;
+    font-size: 11px;
+  }
+}

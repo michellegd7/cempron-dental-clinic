@@ -1,0 +1,959 @@
+
+/* ==========================================
+   CEMPRON DENTAL CLINIC
+   SECRETARY / STAFF DASHBOARD
+   ========================================== */
+
+.staff-app {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f8fc;
+  color: #19374a;
+  font-family: Inter, Arial, sans-serif;
+}
+
+/* ==========================================
+   SIDEBAR
+   ========================================== */
+
+.staff-sidebar {
+  width: 270px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-right: 1px solid #e5edf2;
+  min-height: 100vh;
+  padding: 30px 20px 170px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.staff-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 25px;
+}
+
+.staff-brand-logo {
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(
+    135deg,
+    #e6f8fa,
+    #d8f4f8
+  );
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  flex-shrink: 0;
+}
+
+.staff-brand h2 {
+  margin: 0;
+  color: #087f9c;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.staff-brand p {
+  margin: 5px 0 0;
+  color: #91a5b0;
+  font-size: 12px;
+}
+
+.staff-side-label {
+  margin: 0 12px;
+  color: #91a6b2;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+/* Sidebar Navigation */
+
+.staff-nav-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 13px;
+  padding: 15px 13px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.staff-nav-card.active {
+  background: #e4f6f9;
+}
+
+.staff-nav-icon {
+  width: 39px;
+  height: 39px;
+  border-radius: 11px;
+  background: #f0f9fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.staff-nav-card strong {
+  display: block;
+  color: #087f98;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.staff-nav-card small {
+  display: block;
+  color: #8fa5b1;
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+/* Sidebar Information Panel */
+
+.staff-side-panel {
+  margin-top: 15px;
+  padding: 18px;
+  background: #f5fbfc;
+  border: 1px solid #e1eef2;
+  border-radius: 16px;
+  display: none !important;
+}
+
+.staff-side-panel h4 {
+  font-size: 14px;
+  color: #19374a;
+  margin: 0 0 10px;
+}
+
+.staff-side-panel p {
+  font-size: 12px;
+  color: #849aa8;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.staff-mini-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.staff-mini-stats > div {
+  background: white;
+  border: 1px solid #e2eef2;
+  border-radius: 11px;
+  padding: 13px 8px;
+  text-align: center;
+}
+
+.staff-mini-stats span {
+  display: block;
+  color: #088aa7;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.staff-mini-stats small {
+  display: block;
+  color: #8ba0ad;
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+
+/* CLICKABLE SIDEBAR NAVIGATION */
+
+.staff-nav-button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.staff-nav-button.active {
+  background: #e4f6f9;
+}
+
+.staff-nav-button:hover {
+  background: #eaf8fa;
+}
+
+.staff-nav-button:focus-visible {
+  outline: 2px solid #087f9c;
+  outline-offset: 2px;
+}
+
+/* SMOOTH SCROLL TO APPOINTMENTS */
+
+html {
+  scroll-behavior: smooth;
+}
+
+#appointment-requests {
+  scroll-margin-top: 25px;
+}
+
+/* ==========================================
+   MAIN DASHBOARD
+   ========================================== */
+
+.staff-main {
+  flex: 1;
+  min-width: 0;
+  padding: 35px;
+}
+
+/* Header */
+
+.staff-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 27px;
+}
+
+.staff-topbar h1 {
+  font-size: 27px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: #19374a;
+}
+
+.staff-topbar p {
+  font-size: 13px;
+  color: #8c9eac;
+  margin: 0;
+}
+
+.staff-refresh-btn {
+  background: #087e9d;
+  color: white;
+  border: none;
+  border-radius: 11px;
+  padding: 13px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.staff-refresh-btn:hover {
+  background: #066d88;
+}
+
+.staff-refresh-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   WELCOME BANNER
+   ========================================== */
+
+.staff-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  background: linear-gradient(
+    115deg,
+    #087f9e,
+    #16aec1
+  );
+  border-radius: 20px;
+  padding: 36px 42px;
+  color: #ffffff;
+  margin-bottom: 27px;
+  overflow: hidden;
+}
+
+.staff-hero-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.staff-hero-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  background: rgba(255, 255, 255, 0.16);
+  padding: 9px 14px;
+  border-radius: 30px;
+}
+
+.staff-hero h2 {
+  font-size: clamp(24px, 2.5vw, 34px);
+  font-weight: 800;
+  margin: 20px 0 12px;
+  line-height: 1.3;
+}
+
+.staff-hero p {
+  font-size: 13px;
+  line-height: 1.9;
+  max-width: 620px;
+  color: #e4faff;
+  margin: 0;
+}
+
+.staff-hero-badge {
+  flex-shrink: 0;
+}
+
+.staff-hero-circle {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 73px;
+}
+
+/* ==========================================
+   STATISTICS CARDS
+   ========================================== */
+
+.staff-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 27px;
+}
+
+.staff-stat-card {
+  background: #ffffff;
+  border: 1px solid #e5edf2;
+  border-radius: 17px;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+  box-shadow: 0 4px 14px rgba(31, 66, 88, 0.025);
+}
+
+.staff-stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  flex-shrink: 0;
+}
+
+.staff-stat-icon.total {
+  background: #e3f5fa;
+}
+
+.staff-stat-icon.pending {
+  background: #fff3dc;
+}
+
+.staff-stat-icon.approved {
+  background: #e0f8e9;
+}
+
+.staff-stat-icon.completed {
+  background: #e8eefc;
+}
+
+.staff-stat-card p {
+  color: #8a9eab;
+  font-size: 12px;
+  margin: 0 0 9px;
+}
+
+.staff-stat-card h3 {
+  font-size: 31px;
+  color: #078aa6;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* ==========================================
+   APPOINTMENT SUMMARY
+   ========================================== */
+
+.staff-summary-row {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 18px;
+  margin-bottom: 27px;
+}
+
+.staff-summary-card {
+  background: #ffffff;
+  border: 1px solid #e5edf2;
+  border-radius: 17px;
+  padding: 25px;
+  min-width: 0;
+}
+
+.staff-summary-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.staff-summary-head h3 {
+  font-size: 17px;
+  color: #19374a;
+  margin: 0;
+  font-weight: 800;
+}
+
+.staff-chip {
+  display: inline-block;
+  padding: 8px 12px;
+  background: #dcf5f9;
+  color: #087f9c;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.staff-chip.light {
+  background: #f0f7f9;
+  color: #718f9e;
+}
+
+.staff-summary-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.staff-summary-list > div {
+  background: #f6fafc;
+  border: 1px solid #eaf1f5;
+  border-radius: 13px;
+  padding: 20px;
+}
+
+.staff-summary-list strong {
+  display: block;
+  font-size: 27px;
+  font-weight: 800;
+  color: #087f9e;
+  margin-bottom: 8px;
+}
+
+.staff-summary-list span {
+  font-size: 12px;
+  color: #8a9eab;
+}
+
+/* Latest Appointment */
+
+.staff-latest-box {
+  background: #f7fbfc;
+  border: 1px solid #e8f0f3;
+  border-radius: 14px;
+  padding: 23px;
+}
+
+.staff-latest-box strong {
+  display: block;
+  color: #19374a;
+  font-size: 17px;
+  margin-bottom: 9px;
+}
+
+.staff-latest-box p {
+  font-size: 13px;
+  font-weight: 600;
+  color: #087f9e;
+  margin: 0 0 12px;
+}
+
+.staff-latest-box small {
+  display: block;
+  font-size: 12px;
+  color: #8b9fac;
+}
+
+.staff-muted {
+  font-size: 13px;
+  color: #8b9fac;
+}
+
+/* ==========================================
+   APPOINTMENT TABLE
+   ========================================== */
+
+.staff-table-card {
+  background: #ffffff;
+  border: 1px solid #e5edf2;
+  border-radius: 17px;
+  padding: 25px;
+  min-width: 0;
+}
+
+.staff-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.staff-table-header h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #19374a;
+  margin: 0 0 7px;
+}
+
+.staff-table-header p {
+  font-size: 12px;
+  color: #96a6b2;
+  margin: 0;
+}
+
+/* Search and Filter */
+
+.staff-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.staff-search {
+  min-width: 260px;
+  padding: 12px 14px;
+  border: 1px solid #dce8ed;
+  border-radius: 10px;
+  background: #fbfdfd;
+  color: #19374a;
+  font-size: 12px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.staff-search:focus {
+  border-color: #0a91ad;
+  box-shadow: 0 0 0 3px #e4f6fa;
+}
+
+.staff-search::placeholder {
+  color: #9eb0ba;
+}
+
+.staff-filter {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: #6f8795;
+}
+
+.staff-filter select {
+  border: 1px solid #dce8ed;
+  border-radius: 10px;
+  padding: 11px 13px;
+  background: white;
+  color: #19374a;
+  font-size: 12px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Table Layout */
+
+.staff-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.staff-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 880px;
+}
+
+.staff-table thead th {
+  background: #f4f8fa;
+  color: #849aa8;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: left;
+  padding: 17px 15px;
+  white-space: nowrap;
+}
+
+.staff-table thead th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.staff-table thead th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.staff-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.staff-table tbody tr:hover {
+  background: #fbfdfe;
+}
+
+.staff-table tbody td {
+  padding: 18px 15px;
+  border-bottom: 1px solid #edf2f5;
+  font-size: 12px;
+  color: #19374a;
+  vertical-align: middle;
+}
+
+/* Patient Info */
+
+.staff-patient-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.staff-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #e1f6f9;
+  color: #0887a2;
+  font-size: 16px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.staff-patient-cell strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #17374a;
+  margin-bottom: 6px;
+}
+
+.staff-patient-cell small {
+  display: block;
+  font-size: 11px;
+  color: #9aabb6;
+  overflow-wrap: anywhere;
+}
+
+.staff-service-text {
+  color: #17374a;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+/* Schedule */
+
+.staff-schedule-cell strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.staff-schedule-cell small {
+  display: block;
+  font-size: 11px;
+  color: #9aabb6;
+}
+
+/* Reference Code */
+
+.staff-reference {
+  color: #087e98 !important;
+  font-weight: 700;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+  max-width: 230px;
+}
+
+/* Status Badges */
+
+.staff-status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 13px;
+  border-radius: 25px;
+  text-transform: capitalize;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.staff-status-badge.pending {
+  background: #fff3df;
+  color: #aa7916;
+}
+
+.staff-status-badge.approved {
+  background: #def7ea;
+  color: #15825a;
+}
+
+.staff-status-badge.rejected {
+  background: #ffeaea;
+  color: #b84747;
+}
+
+.staff-status-badge.completed {
+  background: #e7edfd;
+  color: #4d6db1;
+}
+
+/* Action Buttons */
+
+.staff-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.staff-action-btn {
+  border: none;
+  border-radius: 9px;
+  padding: 10px 13px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.staff-action-btn.approve {
+  background: #e0f7ea;
+  color: #18805c;
+}
+
+.staff-action-btn.approve:hover {
+  background: #c6efd9;
+}
+
+.staff-action-btn.reject {
+  background: #ffeded;
+  color: #b84747;
+}
+
+.staff-action-btn.reject:hover {
+  background: #ffdddd;
+}
+
+.staff-action-btn.complete {
+  background: #dff5f8;
+  color: #087f9e;
+}
+
+.staff-action-btn.complete:hover {
+  background: #cceef4;
+}
+
+.staff-action-btn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.staff-dash {
+  color: #a5b4bc;
+  font-weight: 700;
+}
+
+/* ==========================================
+   EMPTY STATE
+   ========================================== */
+
+.staff-empty-state {
+  padding: 42px 15px;
+  text-align: center;
+}
+
+.staff-empty-icon {
+  font-size: 43px;
+  margin-bottom: 14px;
+}
+
+.staff-empty-state h3 {
+  font-size: 17px;
+  color: #19374a;
+  margin: 0 0 10px;
+}
+
+.staff-empty-state p {
+  font-size: 13px;
+  color: #8c9eac;
+  margin: 0;
+}
+
+/* ==========================================
+   ERRORS AND FOOTER
+   ========================================== */
+
+.staff-error {
+  padding: 14px 16px;
+  background: #fff0f0;
+  border: 1px solid #f8dddd;
+  border-radius: 10px;
+  font-size: 12px;
+  color: #b84747;
+  margin-bottom: 18px;
+}
+
+.staff-note {
+  margin-top: 23px;
+  color: #8c9eac;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 1350px) {
+  .staff-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .staff-summary-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1050px) {
+  .staff-table-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .staff-toolbar {
+    width: 100%;
+  }
+
+  .staff-search {
+    flex: 1;
+  }
+}
+
+@media (max-width: 780px) {
+  .staff-app {
+    flex-direction: column;
+  }
+
+  .staff-sidebar {
+    width: 100%;
+    min-height: 0;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .staff-brand {
+    margin-bottom: 10px;
+  }
+
+  .staff-side-panel {
+    display: none;
+  }
+
+  .staff-main {
+    padding: 20px 16px 100px;
+  }
+
+  .staff-topbar {
+    align-items: flex-start;
+  }
+
+  .staff-hero {
+    padding: 26px;
+  }
+
+  .staff-hero-circle {
+    width: 85px;
+    height: 85px;
+    font-size: 48px;
+  }
+
+  .staff-summary-card {
+    padding: 20px;
+  }
+
+  .staff-table-card {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .staff-topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .staff-refresh-btn {
+    width: 100%;
+  }
+
+  .staff-hero {
+    padding: 24px;
+  }
+
+  .staff-hero h2 {
+    font-size: 24px;
+  }
+
+  .staff-hero-badge {
+    display: none;
+  }
+
+  .staff-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .staff-summary-list {
+    grid-template-columns: 1fr;
+  }
+
+  .staff-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .staff-search {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .staff-filter {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .staff-filter select {
+    flex: 1;
+  }
+}
