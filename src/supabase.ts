@@ -17,7 +17,6 @@ export const supabaseConfigured = Boolean(
     !supabaseKey.includes("YOUR_")
 );
 
-// Create the client only when environment variables exist.
 export const supabase = supabaseConfigured
   ? createClient(supabaseUrl!, supabaseKey!, {
       auth: {

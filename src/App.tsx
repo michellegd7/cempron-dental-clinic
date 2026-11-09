@@ -7,6 +7,7 @@ import {
 } from "react";
 import { supabase } from "./supabase";
 import { createAppointmentPdf } from "./appointmentPdf";
+import AirQualityCard from "./AirQualityCard";
 import "./index.css";
 
 type Page = "dashboard" | "appointment" | "holidays" | "location";
@@ -83,10 +84,6 @@ const longitude = Number(
   import.meta.env.VITE_CLINIC_LONGITUDE || 124.245
 );
 
-// ==========================================
-// DATE HELPERS
-// ==========================================
-
 function todayPH() {
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: "Asia/Manila",
@@ -152,10 +149,6 @@ function formatPhilippineDate(data: PhilippineTime) {
   return `${data.dayOfWeek}, ${month} ${data.day}, ${data.year}`;
 }
 
-// ==========================================
-// QR SERVER URL GENERATOR
-// ==========================================
-
 function generateQrUrl(pdfUrl: string, size = "240x240") {
   return (
     "https://api.qrserver.com/v1/create-qr-code/?" +
@@ -167,30 +160,22 @@ function generateQrUrl(pdfUrl: string, size = "240x240") {
   );
 }
 
-// ==========================================
-// PATIENT APPLICATION
-// ==========================================
-
 function App() {
   const [page, setPage] = useState<Page>("dashboard");
 
-  // API 1: Weather
   const [weather, setWeather] = useState<Weather | null>(null);
   const [weatherLoading, setWeatherLoading] = useState(true);
   const [weatherError, setWeatherError] = useState("");
 
-  // API 2: Holidays
   const [holidays, setHolidays] = useState<Holiday[]>([]);
   const [holidayLoading, setHolidayLoading] = useState(true);
   const [holidayError, setHolidayError] = useState("");
 
-  // API 5: Philippine Time
   const [philippineTime, setPhilippineTime] =
     useState<PhilippineTime | null>(null);
   const [timeLoading, setTimeLoading] = useState(true);
   const [timeError, setTimeError] = useState("");
 
-  // Appointment form
   const [patientName, setPatientName] = useState("");
   const [email, setEmail] = useState("");
   const [service, setService] = useState(services[0].name);
@@ -202,13 +187,11 @@ function App() {
   const [formError, setFormError] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  // Saved patient appointments
   const [myRequests, setMyRequests] =
     useState<AppointmentRow[]>([]);
   const [requestsLoading, setRequestsLoading] = useState(false);
   const [requestsError, setRequestsError] = useState("");
 
-  // PDF QR history
   const [historyPdfUrls, setHistoryPdfUrls] =
     useState<Record<string, string>>({});
 
@@ -217,14 +200,11 @@ function App() {
 
   const pdfGenerationLock = useRef(false);
 
-  // ==========================================
-  // API 1: OPEN-METEO
-  // ==========================================
-
   async function loadWeather() {
     setWeatherLoading(true);
     setWeatherError("");
 
+    //diri display ang current weather conditions
     try {
       const params = new URLSearchParams({
         latitude: String(latitude),
@@ -260,17 +240,13 @@ function App() {
     }
   }
 
-  // ==========================================
-  // API 2: NAGER.DATE
-  // ==========================================
-
   async function loadHolidays() {
     setHolidayLoading(true);
     setHolidayError("");
 
     try {
       const year = Number(todayPH().slice(0, 4));
-
+      // diri maretrieve ang ang philippine holidays
       const responses = await Promise.all(
         [year, year + 1].map((y) =>
           fetch(
@@ -303,10 +279,7 @@ function App() {
     }
   }
 
-  // ==========================================
-  // API 5: TIMEAPI.IO
-  // ==========================================
-
+  //to retreive and display ang current ph date and time
   async function loadPhilippineTime() {
     setTimeLoading(true);
     setTimeError("");
@@ -345,11 +318,7 @@ function App() {
       setTimeLoading(false);
     }
   }
-
-  // ==========================================
-  // LOAD SAVED APPOINTMENTS
-  // ==========================================
-
+  //email verification
   async function loadMyRequests() {
     if (!supabase) {
       setRequestsError("Supabase is not configured.");
@@ -369,7 +338,7 @@ function App() {
           "Please log in to view your appointments."
         );
       }
-
+      //retrieve ang appointment 
       const { data, error } = await supabase
         .from("dental_appointments")
         .select(
@@ -394,10 +363,6 @@ function App() {
     }
   }
 
-  // ==========================================
-  // GENERATE OR REPAIR HISTORY PDF
-  // ==========================================
-
   async function prepareHistoryPdf(
     request: AppointmentRow
   ) {
@@ -412,8 +377,6 @@ function App() {
         request.patient_id
       );
 
-      // PDF generation helper must verify that
-      // the file really exists before returning.
       setHistoryPdfUrls((previous) => ({
         ...previous,
         [request.id]: pdfUrl,
@@ -433,10 +396,6 @@ function App() {
     }
   }
 
-  // ==========================================
-  // LOAD INITIAL DATA
-  // ==========================================
-
   useEffect(() => {
     void loadWeather();
     void loadHolidays();
@@ -450,10 +409,6 @@ function App() {
       window.clearInterval(timeInterval);
     };
   }, []);
-
-  // ==========================================
-  // AUTOMATIC APPOINTMENT REFRESH
-  // ==========================================
 
   useEffect(() => {
     if (page !== "appointment") return;
@@ -475,10 +430,6 @@ function App() {
       window.removeEventListener("focus", onFocus);
     };
   }, [page]);
-
-  // ==========================================
-  // SAVE APPOINTMENT + CREATE PDF
-  // ==========================================
 
   async function submitAppointment(
     event: FormEvent<HTMLFormElement>
@@ -524,6 +475,7 @@ function App() {
       return;
     }
 
+    //dri mahibal.an if mo book ang patient sa holiday mo pop up ang message
     const holiday = holidays.find(
       (item) => item.date === date
     );
@@ -549,8 +501,7 @@ function App() {
       }
 
       const reference = `CDC-${crypto.randomUUID()}`;
-
-      // First save the appointment record.
+      //save ang appointment 
       const { error } = await supabase
         .from("dental_appointments")
         .insert({
@@ -568,13 +519,11 @@ function App() {
 
       appointmentSaved = true;
 
-      // Then generate the PDF and upload it.
       const pdfUrl = await createAppointmentPdf(
         reference,
         auth.user.id
       );
 
-      // Only show the QR after the upload succeeds.
       setBooking({
         reference,
         patientName: patientName.trim(),
@@ -615,18 +564,11 @@ function App() {
     }
   }
 
-  // ==========================================
-  // QR CODE (LINKS TO ONLINE PDF)
-  // ==========================================
-
   const qrUrl = booking
     ? generateQrUrl(booking.pdfUrl)
     : "";
 
-  // ==========================================
-  // GOOGLE MAPS
-  // ==========================================
-
+  // to display the dental clinic location
   const directionsUrl =
     "https://www.google.com/maps/search/?api=1&query=" +
     encodeURIComponent(clinicQuery);
@@ -648,10 +590,6 @@ function App() {
       behavior: "smooth",
     });
   }
-
-  // ==========================================
-  // MAIN USER INTERFACE
-  // ==========================================
 
   return (
     <div className="app">
@@ -784,6 +722,7 @@ function App() {
               </div>
 
               <div className="cards-grid">
+                <AirQualityCard />
                 {/* API 1: WEATHER */}
                 <div className="info-card weather-card">
                   <div className="card-top">
@@ -1517,7 +1456,7 @@ function App() {
                     Google Maps
                   </span>
                 </div>
-
+                
                 <div className="map-container">
                   <iframe
                     title="Cempron Dental Clinic Location"
